@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lab5</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #test {
+            height: 30px;
+            width: 30px;
+            background: green;
+        }
+
+        div {
+            display: block;
+            text-align: center;
+            
+        }
+        
+        form {
+            display: inline-block;
+            text-align: center;
+             width: 30%;
+        }
+
+        #resultText {
+            font-size: 20px;
+            white-space: pre-line;
+        }
+
+        #resultDiv {
+            display: none;
+        }
+    </style>
+    <script>
+        function shadow_open_close(idbox, iddiv) {
+            if (document.getElementById(idbox).checked)
+                document.getElementById(iddiv).style.display = "block"
+            else document.getElementById(iddiv).style.display = "none"
+        }
+
+        function colorChanged() {
+            document.getElementById("test").style.background = document.getElementById("color").value;
+            return
+        }
+
+        function fun1() {
+            var range = document.getElementById('size1');
+            var div = document.getElementById('test');
+            div.style.width = range.value + 'px';
+        }
+
+        window.onload = sizePic;
+        document.getElementById("size").addEventListener('input', sizePic);
+
+        function changeSize() {
+            var size = document.getElementById("size").value;
+            var img = document.querySelector('img');
+            img.setAttribute('width', size)
+        }
+
+        function submitButtonClicked() {
+            let Name = document.getElementById("Name").value
+            let Surname = document.getElementById("Surname").value
+            let fathersName = document.getElementById("fathersName").value
+            let email = document.getElementById("email").value
+            let birthday = document.getElementById("birthday").value
+            if (Name != "" && Surname != "" && fathersName != "" &&
+                email != "" && birthday != "") {
+                line = "Твое гордое имя: " + Name + '\n' + "Твоя фамилия: " + Surname + '\n' +
+                    "Твое отчество: " + fathersName + '\n' + "Твоя почта: " + email + '\n' + "Твоё др: " + birthday;
+                document.getElementById("resultText").textContent = line;
+                document.getElementById("resultDiv").style.display = "block";
+                document.getElementById("mainDiv").style.display = "none";
+            }
+        }
+
+        function backButton() {
+            document.getElementById("resultDiv").style.display = "none";
+            document.getElementById("mainDiv").style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+    <form id="mainform">
+        <div id="mainDiv" display="block">
+            <fieldset>
+                <legend>ЛИЧная иформация (заполни, пожалуйста)</legend>
+                <p><input id="Name" type="text" name="Name" placeholder="Имя*" required autofocus></p>
+                <p><input id="Surname" type="text" name="Surname" placeholder="Фамилия*" required></p>
+                <p><input id="fathersName" type="text" name="fathersName" placeholder="Отчество*" required></p>
+                <p><input id="email" type="email" required="" placeholder="почта@gmail.com"></p>
+                <p>твоё др <input id="birthday" type="date" name="Date"></p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Поиграем вместе с Ява?(Java)</legend>
+                <p>Передам твой любимый цвет ФСБ(штучке снизу): <input type="color" id="color" onchange="colorChanged()" name="Color"></p>
+                <p>Размер крутого лица: <input id="size" type="range" min="100" max="200" step="2" value="150" oninput="changeSize(this)"></p>
+                <p><img id="imgExample" width="150" src="img/Invoker_icon.png"></p>
+                <p>увеличитель штучки<input type="range" id="size1" oninput="fun1()"></p>
+                <div id="test">Штучка</div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Hobbies</legend>
+                <p>Music<input name="Hobby" id="musicbox" type="checkbox" value="music-area" oninput="shadow_open_close('musicbox', 'musicdiv')"></p>
+                <div id="musicdiv" style="display: none">
+                    <fieldset name="music-area" style="display: block;">
+                        <p><input type="radio" name="music-area" value="Рокц">Рокц</p>
+                        <p><input type="radio" name="music-area" value="Реп">Реп</p>
+                        <p><input type="radio" name="music-area" value="Поп">Поп</p>
+                    </fieldset>
+                </div>
+                <p>Games<input name="Hobby" id="gamebox" type="checkbox" value="game-area" oninput="shadow_open_close('gamebox', 'gamediv')"></p>
+                <div id="gamediv" style="display: none">
+                    <fieldset name="game-area" style="display: block;">
+                        <p><input type="radio" name="game-area" value="Strategy">Strategy</p>
+                        <p><input type="radio" name="game-area" value="Action">Action</p>
+                        <p><input type="radio" name="game-area" value="RPG">RPG</p>
+                    </fieldset>
+                </div>
+            </fieldset>
+
+            <div class="lower-part">
+                <input type="button" onclick="submitButtonClicked()" value="Отправить" id="submitButton">
+                <input type="reset" value="Перезапуск" onclick="window.location.reload()" />
+                <a href="index.html">Тест хочешь?</a>
+            </div>
+        </div>
+    </form>
+
+
+    <div id="resultDiv">
+        <p id="resultText">Результат</p>
+        <button onclick="backButton()">Назад</button>
+    </div>
+
+</body></html>

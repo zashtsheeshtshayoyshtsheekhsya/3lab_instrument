@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Тест</title>
+
+
+
+    <script>
+        function proverit() {
+            otv1 = document.getElementById('answer');
+            ball = 0;
+            if (otv1.value == 1 && otv1.checked) {
+                ball += 1;
+            }
+            {
+                if (document.getElementById('s3').value == "1" && document.getElementById('s2')
+                    .value == "1" && document.getElementById('s').value == "1")
+                    ball += 1
+            }
+            {
+                if (document.getElementById('t3').checked && document.getElementById('t0').checked)
+                    ball += 1
+            }
+            {
+                if (document.getElementById('t3').checked && document.getElementById('t0')
+                    .checked && document.getElementById('t1').checked && document.getElementById('t2').checked)
+                    ball -= 1
+            }
+            otv = document.getElementById('ttt').value;
+            if (otv == 151) {
+                ball += 1;
+            }
+            otv2 = document.getElementById('i').value.toUpperCase();
+            if (otv2 == 'ЧИСТЯКОВ') {
+                ball += 1;
+            }
+            var word = "";
+            if (ball >= 5) {
+                word = "Отлично";
+            }
+            if ((ball < 5) && (ball >= 4)) {
+                word = "Хорошо";
+            }
+            if ((ball < 4) && (ball >= 2)) {
+                word = "Удовлетворительно";
+            }
+            if (ball < 2) {
+                word = "Неудовлетворительно";
+            }
+            var h = "Ваши баллы " + ball + "." + "Оценка" + " " + word;
+            document.getElementById("r").innerHTML = h;
+        }
+    </script>
+    <style>
+
+
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <h1><span>Добро пожаловать на тест</span></h1>
+    </header>
+
+    <form>
+    <fieldset name="first">
+       <legend>Выбор одного варианта ответа</legend>
+        <span> 364*15864=?</span><br>
+        <input type="radio" id="answer" name="name" value="1">
+        <span>5 774 496</span>
+        <br>
+        <input type="radio" id="answer1" name="name" value="0">
+        <span>ты зашёл слишком далеко</span>
+        <br>
+        <input type="radio" id="answer2" name="name" value="0">
+        <span>вернись к первому ответу</span>
+        <br>
+    </fieldset>
+    <fieldset name="second">
+       <legend>Выбор нескольких вариантов ответа</legend>
+        <span>Выбирите четные числа</span><br />
+        <input type="checkbox" id="t0" value="1" /> 4<br />
+        <input type="checkbox" id="t1" value="0" /> 9<br />
+        <input type="checkbox" id="t2" value="0" /> 7<br />
+        <input type="checkbox" id="t3" value="1" /> 6 <br />
+    </fieldset>
+    <fieldset name="third">
+       <legend>Ввод числового ответа</legend>
+        <p>Пример</p>
+        <p>12*12 + 7 = <input type="number" id="ttt" autocomplete="off"></p>
+    </fieldset>
+    <fieldset name="fo">
+       <legend>Ввод текстового ответа</legend>
+        <p>Дмитрий Борисович...</p>
+        <p><input type="text" id="i" autocomplete="off"></p>
+    </fieldset>
+    <fieldset>
+        <legend>Вопрос на соответствие</legend>
+
+        <span>Разработчик Windows </span> <select id="s" style="margin-left: 38px;">
+            <option value="0" id="n"> Не знаю </option>
+            <option value="0" id="o0"> Стив Джобс </option>
+            <option value="1" id="o1"> Билл Гейтс </option>
+            <option value="0" id="o2"> Линус Торвальдс </option>
+        </select><br />
+
+
+        <span>Разработчик Linux </span> <select style="margin-left: 60px;" id="s2">
+            <option value="0" id="2"> Не знаю </option>
+            <option value="0" id="o4"> Стив Джобс </option>
+            <option value="0" id="o5"> Билл Гейтс </option>
+            <option value="1" id="o6"> Линус Торвальдс </option>
+        </select><br />
+
+
+        <span>Один из основателей Apple </span> <select id="s3">
+            <option value="0" id="dd"> Не знаю </option>
+            <option value="1" id="o7"> Стив Джобс </option>
+            <option value="0" id="o8"> Билл Гейтс </option>
+            <option value="0" id="o9"> Линус Торвальдс </option>
+        </select><br />
+    </fieldset>
+</form>
+    <input type="reset" value="Перезапуск" onclick="window.location.reload()" />
+    <button type="button" onclick="proverit()">Проверить</button>
+    <div id="r"></div>
+</body>
+
+</html>
